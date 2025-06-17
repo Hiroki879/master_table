@@ -85,13 +85,13 @@ CREATE TABLE master."MetricTable" (
   "metric_id"                varchar(100) PRIMARY KEY,
   "metric_name"              varchar(255) NOT NULL,
   "consolidated_metric_name" varchar(255),
-  "platform_id"              varchar(100)
+  "platform_id"              varchar(100) REFERENCES master."Product"("product_id")
 );
 
 CREATE TABLE master."PlatformFactTable" (
   "fyw_id"       varchar(100) NOT NULL REFERENCES master."DateCalendar"("fyw_id"),
-  "platform_id"  varchar(100),
-  "product_id"   varchar(100),
+  "platform_id"  varchar(100) NOT NULL REFERENCES master."Platform"("platform_id"),
+  "product_id"   varchar(100) NOT NULL REFERENCES master."Product"("product_id"),
   "creative_id"  varchar(100) NOT NULL REFERENCES master."Creative"("creative_id"),
   "metric_id"    varchar(100) NOT NULL REFERENCES master."MetricTable"("metric_id"),
   "value"        float,
@@ -113,7 +113,7 @@ CREATE TABLE master."PlatformCurrency" (
   "year"        integer
 );
 
-CREATE TABLE master."CGEN_Activity" (
+CREATE TABLE master."CGENActivity" (
   "id"          varchar(100),
   "activity_id" varchar(100) PRIMARY KEY,
   "campaign_id" varchar(100) REFERENCES master."Campaign"("campaign_id"),
