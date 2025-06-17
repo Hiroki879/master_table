@@ -105,7 +105,7 @@ CREATE TABLE master."FxRate" (
 );
 
 CREATE TABLE master."PlatformCurrency" (
-  "id"          varchar(100) PRIMARY KEY,
+  "platformcurrency_id" varchar(100) PRIMARY KEY,
   "platform_id" varchar(100) NOT NULL REFERENCES master."Platform"("platform_id"),
   "currency"    varchar(10),
   "week_start"  date,
