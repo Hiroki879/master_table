@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "../platform"
+		},
+		{
+			"name": "master_tabel",
+			"path": "."
+		}
+	],
+	"settings": {}
+}

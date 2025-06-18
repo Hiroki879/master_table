@@ -85,7 +85,7 @@ CREATE TABLE master."MetricTable" (
   "metric_id"                varchar(100) PRIMARY KEY,
   "metric_name"              varchar(255) NOT NULL,
   "consolidated_metric_name" varchar(255),
-  "platform_id"              varchar(100) REFERENCES master."Product"("product_id")
+  "platform_id"              varchar(100) REFERENCES master."Platform"("platform_id")
 );
 
 CREATE TABLE master."PlatformFactTable" (
