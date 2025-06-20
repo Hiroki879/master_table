@@ -35,9 +35,13 @@ CREATE TABLE master."Ddom" (
 
 CREATE TABLE master."Funding" (
   "funding_id"   varchar(100) PRIMARY KEY,
-  "program_id"   varchar(100),
-  "program_name" varchar(255),
   "local_global" varchar(50)
+);
+
+CREATE TABLE master."CGENProgram" (
+  "program_id"   varchar(100) PRIMARY KEY,
+  "program_name" varchar(255),
+  "ddom_id"       varchar(100) REFERENCES master."Ddom"("ddom_id")
 );
 
 CREATE TABLE master."Campaign" (
@@ -48,7 +52,8 @@ CREATE TABLE master."Campaign" (
   "segment_id"    varchar(100) REFERENCES master."Segment"("segment_id"),
   "ddom_id"       varchar(100) REFERENCES master."Ddom"("ddom_id"),
   "funding_id"    varchar(100) REFERENCES master."Funding"("funding_id"),
-  "adFormat_id"   varchar(100) REFERENCES master."AdFormat"("adFormat_id")
+  "adFormat_id"   varchar(100) REFERENCES master."AdFormat"("adFormat_id"),
+  "program_id"    varchar(100) REFERENCES master."CGENProgram"("program_id")
 );
 
 CREATE TABLE master."AdGroup" (
@@ -73,6 +78,7 @@ CREATE TABLE master."MediaPlan" (
   "product_id"    varchar(100) REFERENCES master."Product"("product_id"),
   "segment_id"    varchar(100) REFERENCES master."Segment"("segment_id"),
   "ddom_id"       varchar(100) REFERENCES master."Ddom"("ddom_id"),
+  "program_id"    varchar(100) REFERENCES master."CGENProgram"("program_id"),
   "funding_id"    varchar(100) REFERENCES master."Funding"("funding_id"),
   "adFormat_id"   varchar(100) REFERENCES master."AdFormat"("adFormat_id"),
   "start_date"    date,
@@ -114,10 +120,9 @@ CREATE TABLE master."PlatformCurrency" (
 );
 
 CREATE TABLE master."CGENActivity" (
-  "id"          varchar(100),
   "activity_id" varchar(100) PRIMARY KEY,
   "campaign_id" varchar(100) REFERENCES master."Campaign"("campaign_id"),
-  "funding_id"  varchar(100) REFERENCES master."Funding"("funding_id")
+  "program_id"    varchar(100) REFERENCES master."CGENProgram"("program_id")
 );
 
 CREATE TABLE master."AdFormat" (
