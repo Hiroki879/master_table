@@ -122,7 +122,7 @@ CREATE TABLE master."PlatformCurrency" (
 CREATE TABLE master."CGENActivity" (
   "activity_id" varchar(100) PRIMARY KEY,
   "campaign_id" varchar(100) REFERENCES master."Campaign"("campaign_id"),
-  "program_id"    varchar(100) REFERENCES master."CGENProgram"("program_id")
+  "program_id"  varchar(100) REFERENCES master."CGENProgram"("program_id")
 );
 
 CREATE TABLE master."AdFormat" (
